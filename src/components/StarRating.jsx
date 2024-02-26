@@ -25,31 +25,24 @@ function StarRating({ totalStars = 5, onRating, onClear }) {
     from: { transform: 'scale(1)' },
     config: { tension: 300, friction: 10 },
   });
+  const starColors = {
+    1: '#F15A29', // Cor vibrante laranja-avermelhada
+    2: '#F7931E', // Cor laranja brilhante
+    3: '#FBB03B', // Cor amarela alaranjada
+    4: '#00A99D', // Cor turquesa médio
+    5: '#0071BC', // Cor azul royal
+};
+
 
 const getColor = (index) => {
     if (hoverRating >= index + 1 || currentRating >= index + 1) {
-      return index < 1 ? 'red.500' :
-        index < 2 ? 'orange.400' :
-          index < 3 ? 'yellow.400' :
-            index < 4 ? 'green.400' : 'blue.500';
+      return index < 1 ? '#F15A29' :
+        index < 2 ? '#F7931E' :
+          index < 3 ? '#FBB03B' :
+            index < 4 ? '#00A99D' : '#0071BC';
     }
     return 'gray.300';
-  };
-// const getColor = (index) => {
-//     if (currentRating >= index + 1) {
-//       return index < 1 ? 'red.500' :
-//         index < 2 ? 'orange.400' :
-//           index < 3 ? 'yellow.400' :
-//             index < 4 ? 'green.400' : 'blue.500';
-//     }
-//     if (hoverRating >= index + 1) {
-//       return index < 1 ? 'red.500' :
-//         index < 2 ? 'orange.400' :
-//           index < 3 ? 'yellow.400' :
-//             index < 4 ? 'green.400' : 'blue.500';
-//     }
-//     return 'gray.300';
-//   };
+  }; 
 
   return (
     <Flex direction="column" align="center" >
@@ -69,7 +62,7 @@ const getColor = (index) => {
               onClick={() => {
                 setCurrentRating(index + 1);
                 onRating(index + 1); 
-                onClear();  
+                // onClear(); 
               }}
             >
               <Icon

@@ -1,44 +1,43 @@
 import React, { useState, useEffect } from 'react';
-import { Box, Center, Stack, useToast, Heading, Progress, Flex, Text } from '@chakra-ui/react';
+import { Box, Center, Flex, Heading, useToast, Image } from '@chakra-ui/react';
 import { animated, useTransition } from 'react-spring';
 import StarRating from './StarRating';
-import ProgressBar from 'react-bootstrap/ProgressBar';
+import CustomProgressBar from './ProgressBar';
+import { transform } from 'framer-motion';
+
 function EvaluationForm() {
-  
   const toast = useToast();
   const [currentItemIndex, setCurrentItemIndex] = useState(0);
-
   const [progress, setProgress] = useState(0);
 
   const evaluationItems = [
     'Tempo de resposta',
     'Comunicação',
-    'Qualidade do aúdio',
-    'Resolução',
+    'Qualidade do áudio', 
     'Agilidade',
-    'Resultado Final',
+    'Assertividade',
+    'Trabalho em equipe',
+    'Merece um elogio',
   ];
 
+  const [ratings, setRatings] = useState(new Array(evaluationItems.length).fill(0));
 
-  const transitions = useTransition(currentItemIndex === evaluationItems.length ? '' : evaluationItems[currentItemIndex], {
+  const transitions = useTransition(currentItemIndex < evaluationItems.length ? evaluationItems[currentItemIndex] : '', {
     key: currentItemIndex,
     from: { opacity: 0, transform: 'translate3d(0,-100px,0)' },
     enter: { opacity: 1, transform: 'translate3d(0,0px,0)' },
+    // leave: { opacity: 0, transform: 'translate3d(0,-10px,0)' },
   });
 
   const handleRating = (rating) => {
-    // if (currentItemIndex < evaluationItems.length - 1) {
-      // goToNextItem();
-    // }
-  };
-
-  const handleClose = () => {
-    window.close();
+    const newRatings = [...ratings];
+    newRatings[currentItemIndex] = rating;
+    setRatings(newRatings);
+    goToNextItem();
   };
 
   useEffect(() => {
-    // Calcula o progresso com base no index do item atual. Começa em 0% e vai até 100%.
-    const progressValue = (currentItemIndex / evaluationItems.length) * 100;
+    const progressValue = ((currentItemIndex + 1) / evaluationItems.length) * 100;
     setProgress(progressValue);
   }, [currentItemIndex, evaluationItems.length]);
 
@@ -46,13 +45,21 @@ function EvaluationForm() {
     if (currentItemIndex < evaluationItems.length) {
       setCurrentItemIndex(prevIndex => prevIndex + 1);
     } else {
-      // Aqui você pode adicionar qualquer outra lógica que queira executar quando a avaliação estiver completa
+      toast({
+        title: "Avaliação completa",
+        description: "Obrigado por fornecer seu feedback!",
+        status: "success",
+        duration: 5000,
+        isClosable: true,
+      });
+      // Execute qualquer outra lógica de conclusão aqui, se necessário
     }
   };
 
   return (
-    <Center w="100%" h="100vh" p={4}>
-      <Flex direction="column" align="center" w="full" maxW="md">
+    <Center position="relative" w="100%" h="100vh" p={4}  style={{ opacity: 0.5 }} backgroundImage="logo.png" backgroundRepeat="no-repeat" backgroundPosition="center" backgroundSize="80vh">
+
+      <Flex direction="column" align="center" w="full" maxW="md" justifyContent="center" >
         <Box
           justifyContent="center"
           alignItems="center"
@@ -60,7 +67,7 @@ function EvaluationForm() {
           flexDirection="column"
           borderWidth="1px"
           borderRadius="lg"
-          borderStyle={'dashed'}
+          borderStyle={'solid'}
           overflow="hidden"
           p={6}
           boxShadow="lg"
@@ -68,41 +75,33 @@ function EvaluationForm() {
           minW="450px"
           minH="190px"
         >
-          {currentItemIndex < evaluationItems.length ? (
-            transitions((props, item) => (
-              <animated.div style={props}>
-                <Heading fontSize="25px" textAlign="center">{item}</Heading>
-              </animated.div>
-            ))
-          ) : (
-            transitions((props, item) => (
-              <div style={props}>
-                <Text fontSize="25px" textAlign="center">Obrigado por completar a avaliação!</Text>
-              </div>
-            ))
-          )}
+          {/* <Flex direction="row" align="center" w="full" maxW="md" justifyContent="center" >  */}
+          <Image width="150px" height="150px" marginBottom="6%" src={ currentItemIndex == 0 ? 'response.png' : 
+                                                                      currentItemIndex == 1 ? 'approval.png' : 
+                                                                      currentItemIndex == 2 ? 'headset.png' :
+                                                                      currentItemIndex == 3 ? 'racing.png' :
+                                                                      currentItemIndex == 4 ? 'target.png':
+                                                                      currentItemIndex == 5 ? 'highfive.png':
+                                                                      currentItemIndex == 6 ? 'validation.png':
+                                                                      currentItemIndex == 7 ? 'thankyou.png':
+
+                                                                      ''
+                                                                      } />
+          {transitions((props, item) => (
+            <animated.div style={props}>
+              <Flex direction="row" align="center" justify="center" w="full">
+                <Heading fontSize="25px" textAlign="center">{item || 'Avaliação Completa'}</Heading>
+              </Flex>
+            </animated.div>
+          ))}
           {currentItemIndex < evaluationItems.length && (
-            <StarRating key={currentItemIndex} onRating={handleRating} onClear={goToNextItem} />
+            <StarRating key={`star-rating-${currentItemIndex}`} onRating={handleRating} />
           )}
+          <CustomProgressBar ratings={ratings} />
+          {/* </Flex> */}
         </Box>
-
-        <Progress
-          value={progress}
-          size="sm"
-          colorScheme="green"
-          width="full"
-          mt={4}
-          transition="width 0.5s ease-out"
-        />
-
       </Flex>
-      <ProgressBar>
-          <ProgressBar striped variant="success" now={progress * 0.35} key={1} />
-          <ProgressBar variant="warning" now={progress * 0.20} key={2} />
-          <ProgressBar striped variant="danger" now={progress * 0.10} key={3} />
-        </ProgressBar>
     </Center>
-    
   );
 }
 
