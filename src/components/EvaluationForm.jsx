@@ -2,13 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { Box, Center, Flex, Heading, useToast, Image } from '@chakra-ui/react';
 import { animated, useTransition } from 'react-spring';
 import StarRating from './StarRating';
-import CustomProgressBar from './ProgressBar';
-import { transform } from 'framer-motion';
+import CustomProgressBar from './ProgressBar'; 
 
 function EvaluationForm() {
   const toast = useToast();
-  const [currentItemIndex, setCurrentItemIndex] = useState(0);
-  const [progress, setProgress] = useState(0);
+  const [currentItemIndex, setCurrentItemIndex] = useState(0); 
 
   const evaluationItems = [
     'Tempo de resposta',
@@ -37,8 +35,7 @@ function EvaluationForm() {
   };
 
   useEffect(() => {
-    const progressValue = ((currentItemIndex + 1) / evaluationItems.length) * 100;
-    setProgress(progressValue);
+    // const progressValue = ((currentItemIndex + 1) / evaluationItems.length) * 100; 
   }, [currentItemIndex, evaluationItems.length]);
 
   const goToNextItem = () => {

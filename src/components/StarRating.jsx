@@ -2,21 +2,15 @@ import React, { useState } from 'react';
 import {
   Box,
   Flex,
-  Icon,
-  Text,
-  Tooltip,
-  useStyleConfig,
+  Icon, 
+  Tooltip, 
 } from '@chakra-ui/react';
 import { useSpring, animated } from 'react-spring';
 import { StarIcon } from '@chakra-ui/icons';
 
 function StarRating({ totalStars = 5, onRating, onClear }) {
   const [hoverRating, setHoverRating] = useState(0);
-  const [currentRating, setCurrentRating] = useState(0);
-  const [ratingDescription, setRatingDescription] = useState("");
-  
-  // O useStyleConfig pode ser removido se não estiver sendo usado para personalização adicional
-  const styles = useStyleConfig("StarRating");
+  const [currentRating, setCurrentRating] = useState(0);  
 
   const ratings = ['Ruim', 'Okay', 'Bom', 'Ótimo', 'Excelente!'];
 
@@ -25,13 +19,13 @@ function StarRating({ totalStars = 5, onRating, onClear }) {
     from: { transform: 'scale(1)' },
     config: { tension: 300, friction: 10 },
   });
-  const starColors = {
-    1: '#F15A29', // Cor vibrante laranja-avermelhada
-    2: '#F7931E', // Cor laranja brilhante
-    3: '#FBB03B', // Cor amarela alaranjada
-    4: '#00A99D', // Cor turquesa médio
-    5: '#0071BC', // Cor azul royal
-};
+//   const starColors = {
+//     1: '#F15A29', // Cor vibrante laranja-avermelhada
+//     2: '#F7931E', // Cor laranja brilhante
+//     3: '#FBB03B', // Cor amarela alaranjada
+//     4: '#00A99D', // Cor turquesa médio
+//     5: '#0071BC', // Cor azul royal
+// };
 
 
 const getColor = (index) => {
@@ -53,11 +47,11 @@ const getColor = (index) => {
               style={springProps}
               onMouseEnter={() => {
                 setHoverRating(index + 1);
-                setRatingDescription(ratings[index]);
+                // setRatingDescription(ratings[index]);
               }}
               onMouseLeave={() => {
                 setHoverRating(0);
-                setRatingDescription("");
+                // setRatingDescription("");
               }}
               onClick={() => {
                 setCurrentRating(index + 1);
@@ -76,8 +70,7 @@ const getColor = (index) => {
           </Tooltip>
         ))}
       </Flex>
-      <Box height="22px">
-        {/* <Text fontSize="md" mt={2}>{ratingDescription}</Text> */}
+      <Box height="22px"> 
       </Box>
     </Flex>
   );

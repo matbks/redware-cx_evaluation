@@ -19,13 +19,13 @@ const getGradientForRatings = (ratings) => {
   };
 const CustomProgressBar = ({ ratings }) => {
   // Defina as cores para cada classificação de estrela
-  const starColors = {
-    1: '#FF4500', // Vermelho
-    2: '#FF4500', // Laranja
-    3: '#FF4500', // Amarelo
-    4: '#FF4500', // Verde
-    5: '#FF4500', // Azul
-  };
+  // const starColors = {
+  //   1: '#FF4500', // Vermelho
+  //   2: '#FF4500', // Laranja
+  //   3: '#FF4500', // Amarelo
+  //   4: '#FF4500', // Verde
+  //   5: '#FF4500', // Azul
+  // };
 //   const starColors = {
 //     1: '#F15A29', // Cor vibrante laranja-avermelhada
 //     2: '#F7931E', // Cor laranja brilhante
@@ -36,11 +36,11 @@ const CustomProgressBar = ({ ratings }) => {
 
  
   // Crie um gradiente com base nas classificações
-  const gradientColors = ratings.map(rating => starColors[rating]).join(',');
+  // const gradientColors = ratings.map(rating => starColors[rating]).join(',');
 
   // Calcule a porcentagem com base na média das avaliações
-  const averageRating = ratings.reduce((acc, rating) => acc + rating, 0) / ratings.length;
-  const percentage = (averageRating / 5) * 100;
+  // const averageRating = ratings.reduce((acc, rating) => acc + rating, 0) / ratings.length;
+  // const percentage = (averageRating / 5) * 100;
 
   // Estilize a barra de progresso com o gradiente de cores
   // const progressBarStyle = {
