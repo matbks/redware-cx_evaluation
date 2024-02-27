@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { VStack, Box, Center, Flex, Heading, useToast, Image } from '@chakra-ui/react';
+import { Box, Center, Flex, Heading, useToast, Image } from '@chakra-ui/react';
 import { animated, useTransition } from 'react-spring';
 import StarRating from './StarRating';
 import CustomProgressBar from './ProgressBar'; 
