@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Box, Center, Flex, Heading, useToast, Image } from '@chakra-ui/react';
+import { VStack, Box, Center, Flex, Heading, useToast, Image } from '@chakra-ui/react';
 import { animated, useTransition } from 'react-spring';
 import StarRating from './StarRating';
 import CustomProgressBar from './ProgressBar'; 
@@ -55,20 +55,26 @@ function EvaluationForm() {
 
 return (
   <Center position="relative" w="100%" h="100vh" p={4} padding="10%">
+    {/* <Box
+        justifyContent="center"
+        alignItems="center"
+        display="flex"
+        flexDirection="column"
+        borderWidth="1px"
+        borderRadius="lg"
+        borderStyle="solid"
+        overflow="hidden" 
+        p={6}
+        boxShadow="lg"
+        bg="white"
+        minW="300px"
+        minH="400px"
+        hidden="true'
+      > */}
+
+
     {/* Sobreposição de fundo com opacidade ajustada */}
-    <Box
-      position="absolute"
-      top="0"
-      right="0"
-      bottom="0"
-      left="0"
-      bgImage="url('logo.png')"
-      bgRepeat="no-repeat"
-      bgPosition="center"
-      bgSize="45vh"
-      style={{ opacity: 0.7 }}
-    />
-    
+     
     {/* Sua estrutura de componente Flex existente */}
     <Flex
       direction="column"
@@ -77,7 +83,9 @@ return (
       maxW="md"
       justifyContent="center"
       zIndex="docked" // Isso garante que o Flex e seus filhos fiquem acima da Box de fundo
-    >
+    > 
+   
+   <Image src='logo.png'maxW="65%" marginBottom="25px"/>
       <Box
         justifyContent="center"
         alignItems="center"
@@ -88,11 +96,25 @@ return (
         borderStyle="solid"
         overflow="hidden"
         p={6}
-        boxShadow="lg"
+        boxShadow="lg"  
         bg="white"
         minW="300px"
         minH="400px"
       >
+         {/* <Box
+      position="absolute"
+      top="0"
+      right="0"
+      bottom="60px"
+      left="0"   
+      style={{
+        backgroundImage: "url('logo.png')",
+        backgroundRepeat: 'no-repeat',
+        backgroundPosition: 'top',
+        backgroundSize: '238vh',
+        opacity: 0.7,
+      }}
+    /> */}
         <Image
           width="150px"
           height="150px"
@@ -132,6 +154,7 @@ return (
         <CustomProgressBar ratings={ratings} />
       </Box>
     </Flex>
+    {/* </Box> */}
   </Center>
 );
 }
