@@ -51,56 +51,8 @@ function EvaluationForm() {
       });
       // Execute qualquer outra lógica de conclusão aqui, se necessário
     }
-  };
+  }; 
 
-//   return (
-//     <Center position="relative" w="100%" h="100vh" p={4}  style={{ opacity: 0.5 }} backgroundImage="logo.png" backgroundRepeat="no-repeat" backgroundPosition="center" backgroundSize="80vh">
-
-//       <Flex direction="column" align="center" w="full" maxW="md" justifyContent="center" >
-//         <Box
-//           justifyContent="center"
-//           alignItems="center"
-//           display="flex"
-//           flexDirection="column"
-//           borderWidth="1px"
-//           borderRadius="lg"
-//           borderStyle={'solid'}
-//           overflow="hidden"
-//           p={6}
-//           boxShadow="lg"
-//           bg="white"
-//           minW="450px"
-//           minH="190px"
-//         >
-//           {/* <Flex direction="row" align="center" w="full" maxW="md" justifyContent="center" >  */}
-//           <Image width="150px" height="150px" marginBottom="6%" src={ currentItemIndex == 0 ? 'response.png' : 
-//                                                                       currentItemIndex == 1 ? 'approval.png' : 
-//                                                                       currentItemIndex == 2 ? 'headset.png' :
-//                                                                       currentItemIndex == 3 ? 'racing.png' :
-//                                                                       currentItemIndex == 4 ? 'target.png':
-//                                                                       currentItemIndex == 5 ? 'highfive.png':
-//                                                                       currentItemIndex == 6 ? 'validation.png':
-//                                                                       currentItemIndex == 7 ? 'thankyou.png':
-
-//                                                                       ''
-//                                                                       } />
-//           {transitions((props, item) => (
-//             <animated.div style={props}>
-//               <Flex direction="row" align="center" justify="center" w="full">
-//                 <Heading fontSize="25px" textAlign="center">{item || 'Avaliação Completa'}</Heading>
-//               </Flex>
-//             </animated.div>
-//           ))}
-//           {currentItemIndex < evaluationItems.length && (
-//             <StarRating key={`star-rating-${currentItemIndex}`} onRating={handleRating} />
-//           )}
-//           <CustomProgressBar ratings={ratings} />
-//           {/* </Flex> */}
-//         </Box>
-//       </Flex>
-//     </Center>
-//   );
-// }
 return (
   <Center position="relative" w="100%" h="100vh" p={4}>
     {/* Sobreposição de fundo com opacidade ajustada */}
@@ -113,7 +65,7 @@ return (
       bgImage="url('logo.png')"
       bgRepeat="no-repeat"
       bgPosition="center"
-      bgSize="90vh"
+      bgSize="50vh"
       style={{ opacity: 0.7 }}
     />
     
@@ -138,7 +90,7 @@ return (
         p={6}
         boxShadow="lg"
         bg="white"
-        minW="450px"
+        minW="400px"
         minH="400px"
       >
         <Image
@@ -146,7 +98,7 @@ return (
           height="150px"
           marginBottom="6%"
           src={
-            currentItemIndex === 0
+            currentItemIndex === 0 
               ? 'response.png'
               : currentItemIndex === 1
               ? 'approval.png'
