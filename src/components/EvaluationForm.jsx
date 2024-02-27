@@ -113,7 +113,7 @@ return (
       bgImage="url('logo.png')"
       bgRepeat="no-repeat"
       bgPosition="center"
-      bgSize="80vh"
+      bgSize="60vh"
       style={{ opacity: 0.7 }}
     />
     
