@@ -54,7 +54,7 @@ function EvaluationForm() {
   }; 
 
 return (
-  <Center position="relative" w="100%" h="100vh" p={4}>
+  <Center position="relative" w="100%" h="100vh" p={4} padding="10%">
     {/* Sobreposição de fundo com opacidade ajustada */}
     <Box
       position="absolute"
@@ -65,7 +65,7 @@ return (
       bgImage="url('logo.png')"
       bgRepeat="no-repeat"
       bgPosition="center"
-      bgSize="50vh"
+      bgSize="45vh"
       style={{ opacity: 0.7 }}
     />
     
@@ -90,7 +90,7 @@ return (
         p={6}
         boxShadow="lg"
         bg="white"
-        minW="400px"
+        minW="300px"
         minH="400px"
       >
         <Image
