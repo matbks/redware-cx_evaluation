@@ -1,17 +1,17 @@
 import React, { useState, useEffect } from 'react';
-import { Box, Center, Flex, Heading, useToast, Image } from '@chakra-ui/react';
+import { Box, Center, Flex, Heading, useToast, Image, Text } from '@chakra-ui/react';
 import { animated, useTransition } from 'react-spring';
 import StarRating from './StarRating';
-import CustomProgressBar from './ProgressBar'; 
+import CustomProgressBar from './ProgressBar';
 
 function EvaluationForm() {
   const toast = useToast();
-  const [currentItemIndex, setCurrentItemIndex] = useState(0); 
+  const [currentItemIndex, setCurrentItemIndex] = useState(0);
 
   const evaluationItems = [
     'Tempo de resposta',
     'Comunicação',
-    'Qualidade do áudio', 
+    'Qualidade do áudio',
     'Agilidade',
     'Assertividade',
     'Trabalho em equipe',
@@ -38,12 +38,15 @@ function EvaluationForm() {
   useEffect(() => {
     if (showWelcomeToast) {
       toast({
-        position:"top", 
+        position: "top",
         title: "Avaliação anônima",
-        description: "Sua opinião é muito importante para nós, obrigado por participar 🙏",
+        description: <Text>
+          Sua opinião é muito importante para nós.<br />
+          Obrigado por participar. 🙏
+        </Text>,
         status: "info",
         duration: '8000', // Mantém o toast até que seja fechado manualmente
-        isClosable: true,
+        isClosable: true, 
         onCloseComplete: () => setShowWelcomeToast(false) // Quando o toast é fechado, muda o estado
       });
     }
@@ -62,77 +65,77 @@ function EvaluationForm() {
       });
       // Execute qualquer outra lógica de conclusão aqui, se necessário
     }
-  }; 
+  };
 
-return (
-  <Center position="relative" w="100%" h="100vh" p={4} padding="10%">
-     
-    <Flex
-      direction="column"
-      align="center"
-      w="full"
-      maxW="md"
-      justifyContent="center"
-      zIndex="docked" // Isso garante que o Flex e seus filhos fiquem acima da Box de fundo
-    > 
-   
-   <Image src='logo.png'maxW="65%" marginBottom="25px"/>
-      <Box
+  return (
+    <Center position="relative" w="100%" h="100vh" p={4} padding="10%">
+
+      <Flex
+        direction="column"
+        align="center"
+        w="full"
+        maxW="md"
         justifyContent="center"
-        alignItems="center"
-        display="flex"
-        flexDirection="column"
-        borderWidth="1px"
-        borderRadius="lg"
-        borderStyle="solid"
-        overflow="hidden"
-        p={6}
-        boxShadow="lg"  
-        bg="white"
-        minW="300px"
-        minH="400px"
-      > 
-        <Image
-          width="150px"
-          height="150px"
-          marginBottom="6%"
-          src={
-            currentItemIndex === 0 
-              ? 'response.png'
-              : currentItemIndex === 1
-              ? 'approval.png'
-              : currentItemIndex === 2
-              ? 'headset.png'
-              : currentItemIndex === 3
-              ? 'racing.png'
-              : currentItemIndex === 4
-              ? 'target.png'
-              : currentItemIndex === 5
-              ? 'highfive.png'
-              : currentItemIndex === 6
-              ? 'validation.png'
-              : currentItemIndex === 7
-              ? 'thankyou.png'
-              : ''
-          }
-        />
-        {transitions((props, item) => (
-          <animated.div style={props}>
-            <Flex direction="row" align="center" justify="center" w="full">
-              <Heading fontSize="25px" textAlign="center">
-                {item || 'Avaliação Completa'}
-              </Heading>
-            </Flex>
-          </animated.div>
-        ))}
-        {currentItemIndex < evaluationItems.length && (
-          <StarRating key={`star-rating-${currentItemIndex}`} onRating={handleRating} />
-        )}
-        <CustomProgressBar ratings={ratings} />
-      </Box>
-    </Flex>
-    {/* </Box> */}
-  </Center>
-);
+        zIndex="docked" // Isso garante que o Flex e seus filhos fiquem acima da Box de fundo
+      >
+
+        <Image src='logo.png' maxW="65%" marginBottom="25px" />
+        <Box
+          justifyContent="center"
+          alignItems="center"
+          display="flex"
+          flexDirection="column"
+          borderWidth="1px"
+          borderRadius="lg"
+          borderStyle="solid"
+          overflow="hidden"
+          p={6}
+          boxShadow="lg"
+          bg="white"
+          minW="300px"
+          minH="400px"
+        >
+          <Image
+            width="150px"
+            height="150px"
+            marginBottom="6%"
+            src={
+              currentItemIndex === 0
+                ? 'response.png'
+                : currentItemIndex === 1
+                  ? 'approval.png'
+                  : currentItemIndex === 2
+                    ? 'headset.png'
+                    : currentItemIndex === 3
+                      ? 'racing.png'
+                      : currentItemIndex === 4
+                        ? 'target.png'
+                        : currentItemIndex === 5
+                          ? 'highfive.png'
+                          : currentItemIndex === 6
+                            ? 'validation.png'
+                            : currentItemIndex === 7
+                              ? 'thankyou.png'
+                              : ''
+            }
+          />
+          {transitions((props, item) => (
+            <animated.div style={props}>
+              <Flex direction="row" align="center" justify="center" w="full">
+                <Heading fontSize="25px" textAlign="center">
+                  {item || 'Avaliação Completa'}
+                </Heading>
+              </Flex>
+            </animated.div>
+          ))}
+          {currentItemIndex < evaluationItems.length && (
+            <StarRating key={`star-rating-${currentItemIndex}`} onRating={handleRating} />
+          )}
+          <CustomProgressBar ratings={ratings} />
+        </Box>
+      </Flex>
+      {/* </Box> */}
+    </Center>
+  );
 }
 export default EvaluationForm;

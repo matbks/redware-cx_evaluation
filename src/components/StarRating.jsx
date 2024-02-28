@@ -18,14 +18,7 @@ function StarRating({ totalStars = 5, onRating, onClear }) {
     to: { transform: hoverRating ? 'scale(1.2)' : 'scale(1)' },
     from: { transform: 'scale(1)' },
     config: { tension: 300, friction: 10 },
-  });
-//   const starColors = {
-//     1: '#F15A29', // Cor vibrante laranja-avermelhada
-//     2: '#F7931E', // Cor laranja brilhante
-//     3: '#FBB03B', // Cor amarela alaranjada
-//     4: '#00A99D', // Cor turquesa médio
-//     5: '#0071BC', // Cor azul royal
-// };
+  }); 
 
 
 const getColor = (index) => {
