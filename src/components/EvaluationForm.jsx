@@ -41,8 +41,8 @@ function EvaluationForm() {
         position: "top",
         title: "Avaliação anônima",
         description: <Text>
-          Sua opinião é muito importante para nós.<br />
-          Obrigado por participar. 🙏
+          Sua opinião é muito importante para nós<br />
+          Obrigado por participar 🙏
         </Text>,
         status: "info",
         duration: '8000', // Mantém o toast até que seja fechado manualmente
