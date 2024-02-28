@@ -41,11 +41,12 @@ function EvaluationForm() {
         position: "top",
         title: "Avaliação anônima",
         description: <Text>
-          <br />
-          Sua opinião é muito importante para nós.<br />
-          Obrigado por participar.
-          <br /><br />
-          Tempo estimado da pesquisa: 20s
+          <br /> 
+          Sua opinião é muito importante para nós. 
+          <br /> <br />
+          Leva menos de 20s.
+          <br /> <br />
+          Obrigado por participar. 🙏 
           <br />
         </Text>,
         status: "info", 
