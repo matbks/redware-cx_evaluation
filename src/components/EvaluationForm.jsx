@@ -41,10 +41,14 @@ function EvaluationForm() {
         position: "top",
         title: "Avaliação anônima",
         description: <Text>
-          Sua opinião é muito importante para nós<br />
-          Obrigado por participar 🙏
+          <br />
+          Sua opinião é muito importante para nós.<br />
+          Obrigado por participar.
+          <br /><br />
+          Tempo estimado da pesquisa: 20s
+          <br />
         </Text>,
-        status: "info",
+        status: "info", 
         duration: '8000', // Mantém o toast até que seja fechado manualmente
         isClosable: true, 
         onCloseComplete: () => setShowWelcomeToast(false) // Quando o toast é fechado, muda o estado
