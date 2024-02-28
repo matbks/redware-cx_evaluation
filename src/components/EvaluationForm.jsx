@@ -20,6 +20,7 @@ function EvaluationForm() {
 
   const [ratings, setRatings] = useState(new Array(evaluationItems.length).fill(0));
 
+  const [showWelcomeToast, setShowWelcomeToast] = useState(true);
   const transitions = useTransition(currentItemIndex < evaluationItems.length ? evaluationItems[currentItemIndex] : '', {
     key: currentItemIndex,
     from: { opacity: 0, transform: 'translate3d(0,-100px,0)' },
@@ -35,8 +36,18 @@ function EvaluationForm() {
   };
 
   useEffect(() => {
-    // const progressValue = ((currentItemIndex + 1) / evaluationItems.length) * 100; 
-  }, [currentItemIndex, evaluationItems.length]);
+    if (showWelcomeToast) {
+      toast({
+        position:"top", 
+        title: "Avaliação anônima",
+        description: "Sua opinião é muito importante para nós, obrigado por participar 🙏",
+        status: "info",
+        duration: '8000', // Mantém o toast até que seja fechado manualmente
+        isClosable: true,
+        onCloseComplete: () => setShowWelcomeToast(false) // Quando o toast é fechado, muda o estado
+      });
+    }
+  }, [showWelcomeToast, toast]);
 
   const goToNextItem = () => {
     if (currentItemIndex < evaluationItems.length) {
@@ -55,27 +66,7 @@ function EvaluationForm() {
 
 return (
   <Center position="relative" w="100%" h="100vh" p={4} padding="10%">
-    {/* <Box
-        justifyContent="center"
-        alignItems="center"
-        display="flex"
-        flexDirection="column"
-        borderWidth="1px"
-        borderRadius="lg"
-        borderStyle="solid"
-        overflow="hidden" 
-        p={6}
-        boxShadow="lg"
-        bg="white"
-        minW="300px"
-        minH="400px"
-        hidden="true'
-      > */}
-
-
-    {/* Sobreposição de fundo com opacidade ajustada */}
      
-    {/* Sua estrutura de componente Flex existente */}
     <Flex
       direction="column"
       align="center"
@@ -100,21 +91,7 @@ return (
         bg="white"
         minW="300px"
         minH="400px"
-      >
-         {/* <Box
-      position="absolute"
-      top="0"
-      right="0"
-      bottom="60px"
-      left="0"   
-      style={{
-        backgroundImage: "url('logo.png')",
-        backgroundRepeat: 'no-repeat',
-        backgroundPosition: 'top',
-        backgroundSize: '238vh',
-        opacity: 0.7,
-      }}
-    /> */}
+      > 
         <Image
           width="150px"
           height="150px"
