@@ -38,16 +38,13 @@ function EvaluationForm() {
   useEffect(() => {
     if (showWelcomeToast) {
       toast({
-        position: "top",
+        position: "bottom",
         title: "Avaliação anônima",
         description: <Text>
           <br /> 
           Sua opinião é muito importante para nós. 
-          <br /> <br />
-          Leva menos de 20s.
-          <br /> <br />
-          Obrigado por participar. 🙏 
-          <br />
+          <br /> 
+          Nossa pesquisa leva menos de 20s.
         </Text>,
         status: "info", 
         duration: '8000', // Mantém o toast até que seja fechado manualmente
